@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student · Private Classroom</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/student.css" />
+</head>
+<body>
+  <div class="modal-overlay" id="joinModal">
+    <div class="modal">
+      <h2>Join Classroom</h2>
+      <input id="joinRoomId" placeholder="Enter Room ID" />
+      <input id="joinName" placeholder="Your name" />
+      <button id="joinBtn">Join</button>
+      <div id="joinMsg"></div>
+    </div>
+  </div>
+
+  <div class="student-layout" id="mainView" style="display:none">
+    <div class="student-header">
+      <h1>📺 Room: <span id="roomLabel" style="color:#60a5fa"></span></h1>
+      <span id="teacherStatus" class="status-badge status-offline">Teacher offline</span>
+    </div>
+
+    <div class="video-wrapper" id="videoWrapper">
+      <div class="placeholder">
+        <div class="spinner"></div>
+        <p>Waiting for teacher to start a video...</p>
+      </div>
+    </div>
+
+    <div class="chat-box">
+      <h2 style="font-size:1rem; margin-bottom:12px; color:#94a3b8">💬 Class Chat</h2>
+      <div class="chat-messages" id="chatMessages"></div>
+      <div class="chat-input-row">
+        <input id="chatInput" placeholder="Type a message..." />
+        <button id="chatSend">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/student.js"></script>
+</body>
+</html>

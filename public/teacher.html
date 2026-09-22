@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teacher Panel · Private Classroom</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/teacher.css" />
+</head>
+<body>
+  <div class="teacher-layout">
+    <div class="panel">
+      <h2>Room Setup</h2>
+      <input id="roomId" placeholder="Room ID (e.g. physics-9a)" />
+      <input id="teacherKey" type="password" placeholder="Teacher secret key" />
+      <button id="createBtn" style="width:100%">Create Room</button>
+      <div id="setupMsg"></div>
+
+      <hr style="margin:24px 0; border-color:#334155">
+
+      <h2>Controls <span id="statusBadge" class="status-badge status-offline">OFFLINE</span></h2>
+      <input id="videoLink" placeholder="Paste YouTube link" disabled />
+      <div class="btn-row">
+        <button id="playBtn" disabled>▶ Play Now</button>
+        <button id="queueBtn" class="btn-secondary" disabled>+ Queue</button>
+      </div>
+      <div class="btn-row">
+        <button id="nextBtn" class="btn-secondary" disabled>⏭ Next in Queue</button>
+        <button id="stopBtn" class="btn-danger" disabled>⏹ Stop</button>
+      </div>
+
+      <hr style="margin:24px 0; border-color:#334155">
+
+      <h2>Queue</h2>
+      <ul id="queueList" class="queue-list">
+        <li style="color:#64748b">Queue is empty</li>
+      </ul>
+    </div>
+
+    <div class="video-area">
+      <h2 style="margin-bottom:16px; color:#94a3b8; font-size:1.1rem; text-transform:uppercase; letter-spacing:0.05em">
+        Now Playing (Preview)
+      </h2>
+      <div class="video-wrapper" id="videoWrapper">
+        <div class="placeholder">No video playing</div>
+      </div>
+      <p style="color:#64748b; font-size:0.9rem">
+        Students will see this video automatically. Share the room ID:
+        <strong id="shareId" style="color:#60a5fa">—</strong>
+      </p>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/teacher.js"></script>
+</body>
+</html>
