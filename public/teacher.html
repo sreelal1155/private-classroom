@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,6 +8,7 @@
   <link rel="stylesheet" href="/css/style.css" />
   <link rel="stylesheet" href="/css/teacher.css" />
 </head>
+
 <body>
   <div class="teacher-layout">
     <div class="panel">
@@ -37,21 +39,19 @@
       </ul>
     </div>
 
-    <div class="video-area">
-      <h2 style="margin-bottom:16px; color:#94a3b8; font-size:1.1rem; text-transform:uppercase; letter-spacing:0.05em">
-        Now Playing (Preview)
-      </h2>
+        <div class="video-area">
+      <h2>Now Playing (Preview)</h2>
       <div class="video-wrapper" id="videoWrapper">
         <div class="placeholder">No video playing</div>
       </div>
-      <p style="color:#64748b; font-size:0.9rem">
-        Students will see this video automatically. Share the room ID:
-        <strong id="shareId" style="color:#60a5fa">—</strong>
-      </p>
+      <div class="share-info">
+        Share this room ID with students: <strong id="shareId">—</strong>
+      </div>
     </div>
   </div>
 
   <script src="/socket.io/socket.io.js"></script>
   <script src="/js/teacher.js"></script>
 </body>
+
 </html>

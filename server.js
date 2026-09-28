@@ -10,7 +10,7 @@ const server = http.createServer(app);
 const io = new Server(server);
 
 const PORT = process.env.PORT || 3000;
-const DEFAULT_TEACHER_KEY = process.env.TEACHER_DEFAULT_KEY || 'PASSWORD';
+const DEFAULT_TEACHER_KEY = process.env.TEACHER_DEFAULT_KEY || 'password';
 
 // ---------- Storage ----------
 const DATA_DIR = path.join(__dirname, 'data');
