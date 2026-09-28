@@ -42,14 +42,16 @@ function showJoinMsg(msg) {
   $joinMsg.className = 'error';
 }
 
-// ---------- Rendering (FIXED for Playback Error) ----------
+// ---------- Rendering (FIXED for Playback + Landscape) ----------
 function renderVideo(videoId) {
   $videoWrapper.innerHTML = `
     <iframe
-      src="https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1"
+      src="https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1&fs=1"
       referrerpolicy="strict-origin-when-cross-origin"
       allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
-      allowfullscreen></iframe>
+      allowfullscreen
+      webkitallowfullscreen
+      mozallowfullscreen></iframe>
   `;
 }
 
@@ -118,3 +120,44 @@ function escapeHtml(s) {
     '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'
   }[c]));
 }
+
+// ============ MOBILE LANDSCAPE OPTIMIZATION ============
+function optimizeForOrientation() {
+  const isMobile = window.innerWidth <= 900;
+  const isLandscape = window.matchMedia('(orientation: landscape)').matches;
+
+  if (isMobile && isLandscape) {
+    document.body.classList.add('mobile-landscape');
+  } else {
+    document.body.classList.remove('mobile-landscape');
+  }
+}
+
+window.addEventListener('orientationchange', () => {
+  setTimeout(optimizeForOrientation, 200);
+});
+window.addEventListener('resize', optimizeForOrientation);
+optimizeForOrientation();
+
+// ============ TAP VIDEO FOR FULLSCREEN (mobile) ============
+document.addEventListener('click', (e) => {
+  const videoWrapper = document.getElementById('videoWrapper');
+  if (!videoWrapper || !videoWrapper.contains(e.target)) return;
+
+  // Only on touch devices
+  if (!('ontouchstart' in window)) return;
+
+  if (!document.fullscreenElement) {
+    if (videoWrapper.requestFullscreen) {
+      videoWrapper.requestFullscreen().catch(() => {});
+    } else if (videoWrapper.webkitRequestFullscreen) {
+      videoWrapper.webkitRequestFullscreen();
+    }
+  } else {
+    if (document.exitFullscreen) {
+      document.exitFullscreen().catch(() => {});
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    }
+  }
+});
